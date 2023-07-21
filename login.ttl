@@ -4,8 +4,12 @@ USERNAME = 'ec2-user'
 KEY_FILE = 'xxx'
 LOGSPATH = '' 
 IniFile  = ''
+PASSFILE = 'C:\password.dat' 
 PORT_NUM = ':22'
 ;;------------------------------------------------------------------------
+
+;; パスワード取得 
+getpassword PASSFILE USERNAME PASSWORD
 
 COMMAND = HOSTADDR
 strconcat COMMAND PORT_NUM
