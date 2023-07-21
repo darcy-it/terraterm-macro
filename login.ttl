@@ -12,12 +12,19 @@ strconcat COMMAND PORT_NUM
 ;strconcat COMMAND ':22 /ssh /2 /auth=publickey /user='
 strconcat COMMAND ': /ssh /2 /auth=publickey /user='
 strconcat COMMAND USERNAME
+
+strconcat COMMAND ' /passwd=' 
+strconcat COMMAND PASSWORD 
+
 strconcat COMMAND ' /keyfile='
 strconcat COMMAND KEY_FILE
+
 strconcat COMMAND ' /f='
 strconcat COMMAND IniFile
 
-;; ⑤ログファイル名の設定
+;;--------------------------------
+;; log file setting
+;;--------------------------------
 getdate LOG_NAME '%Y%m%d_%H%M%S_&h.log'
 FULLPATH = LOGSPATH
 strconcat FULLPATH LOG_NAME
@@ -31,6 +38,5 @@ connect COMMAND
 
 ;; getting log
 logopen FULLPATH 1 1
-
 
 end
