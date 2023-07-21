@@ -1,0 +1,36 @@
+;;------------------------------------------------------------------------
+HOSTADDR = 'xx.xx.xx.xx'
+USERNAME = 'ec2-user'
+KEY_FILE = 'xxx'
+LOGSPATH = '' 
+IniFile  = ''
+PORT_NUM = ':22'
+;;------------------------------------------------------------------------
+
+COMMAND = HOSTADDR
+strconcat COMMAND PORT_NUM
+;strconcat COMMAND ':22 /ssh /2 /auth=publickey /user='
+strconcat COMMAND ': /ssh /2 /auth=publickey /user='
+strconcat COMMAND USERNAME
+strconcat COMMAND ' /keyfile='
+strconcat COMMAND KEY_FILE
+strconcat COMMAND ' /f='
+strconcat COMMAND IniFile
+
+;; ⑤ログファイル名の設定
+getdate LOG_NAME '%Y%m%d_%H%M%S_&h.log'
+FULLPATH = LOGSPATH
+strconcat FULLPATH LOG_NAME
+
+;; 5432 port ssh fowerding
+;; ポートフォワードの設定は事前に行っておき、コンフィグを保存しておく。
+;; 設定 - SSH転送 - ...
+
+;; connection
+connect COMMAND
+
+;; getting log
+logopen FULLPATH 1 1
+
+
+end
